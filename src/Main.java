@@ -1,58 +1,70 @@
 public class Main {
     public static void main(String[] args) {
 
-        TreatmentStack treatmentStack = new TreatmentStack();
+        VisitLinkedList visitHistory = new VisitLinkedList();
 
-        TreatmentRecord treatment1 = new TreatmentRecord(
-                1001,
-                "Ayyash Mumthaas",
-                "Medication",
-                "Dr. Silva"
+        Visit visit1 = new Visit(
+                501,
+                "2026-09-01",
+                "Dr. Silva",
+                "Fever",
+                "Medication"
         );
 
-        TreatmentRecord treatment2 = new TreatmentRecord(
-                1003,
-                "Mumthaas Haneefa",
-                "Insulin Treatment",
-                "Dr. Fernando"
+        Visit visit2 = new Visit(
+                502,
+                "2026-09-03",
+                "Dr. Fernando",
+                "Diabetes",
+                "Insulin Treatment"
         );
 
-        TreatmentRecord treatment3 = new TreatmentRecord(
-                1005,
-                "Hafsa Jinnah",
-                "Asthma Treatment",
-                "Dr. Kumar"
+        Visit visit3 = new Visit(
+                503,
+                "2026-09-05",
+                "Dr. Kumar",
+                "Asthma",
+                "Inhaler Treatment"
         );
 
-        System.out.println("=== ADDING TREATMENT RECORDS ===");
+        System.out.println("=== ADDING PATIENT VISITS ===");
 
-        treatmentStack.push(treatment1);
-        treatmentStack.push(treatment2);
-        treatmentStack.push(treatment3);
+        visitHistory.addVisit(visit1);
+        visitHistory.addVisit(visit2);
+        visitHistory.addVisit(visit3);
 
         System.out.println();
 
-        treatmentStack.displayStack();
+        visitHistory.displayVisits();
 
-        System.out.println("\n=== POP ===");
+        System.out.println("\n=== SEARCH VISIT 502 ===");
 
-        TreatmentRecord removedRecord = treatmentStack.pop();
+        Visit foundVisit = visitHistory.searchVisit(502);
 
-        if (removedRecord != null) {
-            System.out.println("Last treatment:");
-            System.out.println(removedRecord);
+        if (foundVisit != null) {
+            System.out.println("Visit found:");
+            System.out.println(foundVisit);
+        } else {
+            System.out.println("Visit not found.");
         }
 
-        System.out.println("\n=== STACK AFTER POP ===");
+        System.out.println("\n=== REMOVE VISIT 502 ===");
 
-        treatmentStack.displayStack();
+        visitHistory.removeVisit(502);
 
-        System.out.println("\n=== EMPTY STACK TEST ===");
+        System.out.println("\n=== VISITS AFTER REMOVAL ===");
 
-        treatmentStack.pop();
-        treatmentStack.pop();
+        visitHistory.displayVisits();
 
-        System.out.println("\nTrying to pop from an empty stack:");
-        treatmentStack.pop();
+        System.out.println("\n=== REMOVE NON-EXISTING VISIT ===");
+
+        visitHistory.removeVisit(999);
+
+        System.out.println("\n=== EMPTY LIST TEST ===");
+
+        visitHistory.removeVisit(501);
+        visitHistory.removeVisit(503);
+
+        visitHistory.displayVisits();
     }
 }
