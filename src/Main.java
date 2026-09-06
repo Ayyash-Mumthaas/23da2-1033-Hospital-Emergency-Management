@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        PatientBST patientBST = new PatientBST();
+        EmergencyQueue emergencyQueue = new EmergencyQueue();
 
         Patient patient1 = new Patient(
                 1001,
@@ -12,14 +12,6 @@ public class Main {
         );
 
         Patient patient2 = new Patient(
-                1005,
-                "Hafsa Jinnah",
-                23,
-                "0712345678",
-                "Asthma"
-        );
-
-        Patient patient3 = new Patient(
                 1003,
                 "Mumthaas Haneefa",
                 46,
@@ -27,36 +19,43 @@ public class Main {
                 "Diabetes"
         );
 
-        Patient patient4 = new Patient(
-                1008,
-                "Jinnah Hameedh",
-                56,
-                "0764567890",
-                "Migraine"
+        Patient patient3 = new Patient(
+                1005,
+                "Hafsa Jinnah",
+                23,
+                "0712345678",
+                "Asthma"
         );
 
-        patientBST.insert(patient1);
-        patientBST.insert(patient2);
-        patientBST.insert(patient3);
-        patientBST.insert(patient4);
+        System.out.println("=== ADDING PATIENTS TO EMERGENCY QUEUE ===");
 
-        System.out.println("=== PATIENT RECORDS ===");
-        patientBST.displayInOrder();
+        emergencyQueue.enqueue(patient1);
+        emergencyQueue.enqueue(patient2);
+        emergencyQueue.enqueue(patient3);
 
-        System.out.println("\n=== SEARCH PATIENT ===");
-        Patient foundPatient = patientBST.search(1003);
+        System.out.println();
 
-        if (foundPatient != null) {
-            System.out.println("Patient found:");
-            System.out.println(foundPatient);
-        } else {
-            System.out.println("Patient not found.");
+        emergencyQueue.displayQueue();
+
+        System.out.println("\n=== DEQUEUE ===");
+
+        Patient treatedPatient = emergencyQueue.dequeue();
+
+        if (treatedPatient != null) {
+            System.out.println("Next patient:");
+            System.out.println(treatedPatient);
         }
 
-        System.out.println("\n=== DELETE PATIENT 1005 ===");
-        patientBST.delete(1005);
+        System.out.println("\n=== QUEUE AFTER DEQUEUE ===");
 
-        System.out.println("\n=== PATIENT RECORDS AFTER DELETION ===");
-        patientBST.displayInOrder();
+        emergencyQueue.displayQueue();
+
+        System.out.println("\n=== EMPTY QUEUE TEST ===");
+
+        emergencyQueue.dequeue();
+        emergencyQueue.dequeue();
+
+        System.out.println("\nTrying to dequeue from an empty queue:");
+        emergencyQueue.dequeue();
     }
 }
