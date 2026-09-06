@@ -1,45 +1,70 @@
 public class Main {
     public static void main(String[] args) {
 
-        VisitLinkedList visitHistory = new VisitLinkedList();
-
-        Visit visit1 = new Visit(
-                501,
-                "2026-09-01",
-                "Dr. Silva",
-                "Fever",
-                "Medication"
+        Patient patient1 = new Patient(
+                1001,
+                "Ayyash Mumthaas",
+                22,
+                "0771234567",
+                "Fever"
         );
 
-        Visit visit2 = new Visit(
-                502,
-                "2026-09-03",
-                "Dr. Fernando",
-                "Diabetes",
-                "Insulin Treatment"
+        Patient patient2 = new Patient(
+                1005,
+                "Hafsa Jinnah",
+                23,
+                "0712345678",
+                "Asthma"
         );
 
-        Visit visit3 = new Visit(
-                503,
-                "2026-09-05",
-                "Dr. Kumar",
-                "Asthma",
-                "Inhaler Treatment"
+        System.out.println("=== ADDING VISITS FOR AYYASH ===");
+
+        patient1.visitHistory.addVisit(
+                new Visit(
+                        501,
+                        "2026-09-01",
+                        "Dr. Silva",
+                        "Fever",
+                        "Medication"
+                )
         );
 
-        System.out.println("=== ADDING PATIENT VISITS ===");
-
-        visitHistory.addVisit(visit1);
-        visitHistory.addVisit(visit2);
-        visitHistory.addVisit(visit3);
+        patient1.visitHistory.addVisit(
+                new Visit(
+                        502,
+                        "2026-09-03",
+                        "Dr. Fernando",
+                        "Fever",
+                        "Follow-up treatment"
+                )
+        );
 
         System.out.println();
 
-        visitHistory.displayVisits();
+        System.out.println("=== AYYASH'S VISIT HISTORY ===");
+        patient1.visitHistory.displayVisits();
 
-        System.out.println("\n=== SEARCH VISIT 502 ===");
+        System.out.println();
 
-        Visit foundVisit = visitHistory.searchVisit(502);
+        System.out.println("=== HAFSA'S VISIT HISTORY ===");
+
+        patient2.visitHistory.addVisit(
+                new Visit(
+                        601,
+                        "2026-09-05",
+                        "Dr. Kumar",
+                        "Asthma",
+                        "Inhaler Treatment"
+                )
+        );
+
+        patient2.visitHistory.displayVisits();
+
+        System.out.println();
+
+        System.out.println("=== SEARCH AYYASH'S VISIT 502 ===");
+
+        Visit foundVisit = patient1.visitHistory.searchVisit(502);
 
         if (foundVisit != null) {
             System.out.println("Visit found:");
@@ -48,23 +73,20 @@ public class Main {
             System.out.println("Visit not found.");
         }
 
-        System.out.println("\n=== REMOVE VISIT 502 ===");
+        System.out.println();
 
-        visitHistory.removeVisit(502);
+        System.out.println("=== REMOVE AYYASH'S VISIT 501 ===");
 
-        System.out.println("\n=== VISITS AFTER REMOVAL ===");
+        patient1.visitHistory.removeVisit(501);
 
-        visitHistory.displayVisits();
+        System.out.println();
 
-        System.out.println("\n=== REMOVE NON-EXISTING VISIT ===");
+        System.out.println("=== AYYASH'S HISTORY AFTER REMOVAL ===");
+        patient1.visitHistory.displayVisits();
 
-        visitHistory.removeVisit(999);
+        System.out.println();
 
-        System.out.println("\n=== EMPTY LIST TEST ===");
-
-        visitHistory.removeVisit(501);
-        visitHistory.removeVisit(503);
-
-        visitHistory.displayVisits();
+        System.out.println("=== HAFSA'S HISTORY REMAINS UNCHANGED ===");
+        patient2.visitHistory.displayVisits();
     }
 }

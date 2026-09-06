@@ -4,6 +4,7 @@ public class Patient {
     int age;
     String contact;
     String medicalCondition;
+    VisitLinkedList visitHistory;
 
     public Patient(int patientId, String name, int age, String contact, String medicalCondition) {
         this.patientId = patientId;
@@ -11,6 +12,7 @@ public class Patient {
         this.age = age;
         this.contact = contact;
         this.medicalCondition = medicalCondition;
+        this.visitHistory = new VisitLinkedList();
     }
 
     @Override
