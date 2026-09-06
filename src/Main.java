@@ -1,61 +1,58 @@
 public class Main {
     public static void main(String[] args) {
 
-        EmergencyQueue emergencyQueue = new EmergencyQueue();
+        TreatmentStack treatmentStack = new TreatmentStack();
 
-        Patient patient1 = new Patient(
+        TreatmentRecord treatment1 = new TreatmentRecord(
                 1001,
                 "Ayyash Mumthaas",
-                22,
-                "0771234567",
-                "Fever"
+                "Medication",
+                "Dr. Silva"
         );
 
-        Patient patient2 = new Patient(
+        TreatmentRecord treatment2 = new TreatmentRecord(
                 1003,
                 "Mumthaas Haneefa",
-                46,
-                "0753456789",
-                "Diabetes"
+                "Insulin Treatment",
+                "Dr. Fernando"
         );
 
-        Patient patient3 = new Patient(
+        TreatmentRecord treatment3 = new TreatmentRecord(
                 1005,
                 "Hafsa Jinnah",
-                23,
-                "0712345678",
-                "Asthma"
+                "Asthma Treatment",
+                "Dr. Kumar"
         );
 
-        System.out.println("=== ADDING PATIENTS TO EMERGENCY QUEUE ===");
+        System.out.println("=== ADDING TREATMENT RECORDS ===");
 
-        emergencyQueue.enqueue(patient1);
-        emergencyQueue.enqueue(patient2);
-        emergencyQueue.enqueue(patient3);
+        treatmentStack.push(treatment1);
+        treatmentStack.push(treatment2);
+        treatmentStack.push(treatment3);
 
         System.out.println();
 
-        emergencyQueue.displayQueue();
+        treatmentStack.displayStack();
 
-        System.out.println("\n=== DEQUEUE ===");
+        System.out.println("\n=== POP ===");
 
-        Patient treatedPatient = emergencyQueue.dequeue();
+        TreatmentRecord removedRecord = treatmentStack.pop();
 
-        if (treatedPatient != null) {
-            System.out.println("Next patient:");
-            System.out.println(treatedPatient);
+        if (removedRecord != null) {
+            System.out.println("Last treatment:");
+            System.out.println(removedRecord);
         }
 
-        System.out.println("\n=== QUEUE AFTER DEQUEUE ===");
+        System.out.println("\n=== STACK AFTER POP ===");
 
-        emergencyQueue.displayQueue();
+        treatmentStack.displayStack();
 
-        System.out.println("\n=== EMPTY QUEUE TEST ===");
+        System.out.println("\n=== EMPTY STACK TEST ===");
 
-        emergencyQueue.dequeue();
-        emergencyQueue.dequeue();
+        treatmentStack.pop();
+        treatmentStack.pop();
 
-        System.out.println("\nTrying to dequeue from an empty queue:");
-        emergencyQueue.dequeue();
+        System.out.println("\nTrying to pop from an empty stack:");
+        treatmentStack.pop();
     }
 }
